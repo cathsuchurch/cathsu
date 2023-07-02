@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'login_system.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://postgres:ETFGg9H9Oywf2gEyWx7t@containers-us-west-183.railway.app:6306/railway')
+    'default': dj_database_url.parse('postgresql://postgres:lN9oOTDgOlEK1sJMlnFS@containers-us-west-145.railway.app:7528/railway')
 }
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
