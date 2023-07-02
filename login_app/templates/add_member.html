@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member - Cathsu Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <style>
+            .mm {
+                position: fixed;
+            }
+        
+        
+            .membership {
+                padding: 0 5%;
+                margin-top: 35px;
+                overflow-y: scroll;
+                position: relative;
+                left: 270px;
+            }
+        
+            .member-form {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                width: 100%;
+        
+            }
+        
+            .forms-input {
+                width: 95%;
+                margin-bottom: 25px;
+            }
+        
+            .forms-input input {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 2px solid #747474;
+            }
+        
+            .forms-select {
+                width: 95%;
+                margin-bottom: 25px;
+            }
+        
+            .forms-select select {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 2px solid #747474;
+                background-color: #fff;
+            }
+        
+            .add-submit input {
+                background-color: #9e0a89;
+                padding: 15px 50px;
+                border: none;
+                color: #fff;
+                font-family: "Rubik", sans-serif;
+                border-radius: 5px;
+                margin-bottom: 50px;
+                border-radius: 999px;
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+        
+            }
+        
+            #profile-image-input {
+                border: 2px dashed #747474;
+                height: 45px;
+                width: 47%;
+                border-radius: 5px;
+                background-color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-self: center;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="overflow-hidden">
+        <div class="row">
+            <div class="col-md-2 mm">
+                {% include 'sidebar.html' %}
+            </div>
+            <div class="col-md-10 membership">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h3>Personal Information</h3>
+
+                <form enctype="multipart/form-data" method="post">
+
+                    {% csrf_token %}
+                    <div style="position: relative;">
+                        <div id="profile-image-preview"
+                            style="background-image: url('../static/images/default.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;width: 150px; height: 150px; border-radius: 50%; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                        </div>
+                        <br>
+                        <br>
+                        <label for="" style="margin-bottom: 10px;">Add a Profile Picture:</label>
+                        <br>
+                        <input type="file" id="profile-image-input" accept="image/*"
+                            onchange="previewProfileImage(event)"
+                            style="position: absolute; bottom: -40px; left:0; margin-top:150px;"
+                            placeholder="Add an image" name="profile_image" required>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="member-form">
+
+                        <div class="forms-input ">
+                            <label>First Name:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your first name" name="first_name" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Middle Name:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your middle name" name="middle_name" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Surname:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your surname" name="surname" required>
+                        </div>
+                        <div class="forms-select">
+                            <label for="id_gender">Gender:</label>
+                            <br>
+                            <select id="id_gender" name="gender" required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <div class="forms-input">
+                            <label>Contact Number:</label>
+                            <br>
+                            <input type="number" min="0" placeholder="Enter your contact number" name="contact_number"
+                                required>
+                        </div>
+                        <div class="forms-input">
+                            <label>House Number:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your house number" name="house_number" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Hometown:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your hometown" name="hometown" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Email:</label>
+                            <br>
+                            <input type="email" placeholder="Enter your email address" name="email" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Date of Birth:</label>
+                            <br>
+                            <input type="date" placeholder="Enter your date of birth" name="date_of_birth" required>
+                        </div>
+                        <br>
+
+                        <h3>Educational Background</h3>
+                        <br>
+                        <div class="forms-input">
+                            <label>Previous School:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your previous school" name="previous_school" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Current School:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your current school" name="current_school" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Occupation:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your occupation" name="occupation" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Course:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your course" name="course" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Level/Year/Form:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your level/year/form" name="level" required>
+                        </div>
+                        <div class="forms-input">
+                            <label>Field:</label>
+                            <br>
+                            <input type="text" placeholder="Enter your field" name="field" required>
+                        </div>
+                        <h3>Other Information</h3>
+                        <br>
+                        <div class="forms-input">
+                            <label>Date of Joining Society:</label>
+                            <br>
+                            <input type="date" placeholder="Enter your date of birth" name="date_of_joining" required>
+                        </div>
+                        <div class="forms-select">
+                            <label for="id_membership">Membership Status:</label>
+                            <br>
+                            <select id="id_membership" name="status" required>
+                                <option value="Active">Active Member</option>
+                                <option value="Affiliate">Affiliciate Member</option>
+                                <option value="Patron">Patron/Patronessess</option>
+                            </select>
+                        </div>
+                        <div class="add-submit">
+                            <input type="submit" value="Add a Member">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function previewProfileImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('profile-image-preview');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.style.backgroundImage = "url('" + e.target.result + "')";
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+

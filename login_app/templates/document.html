@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - Cathsu Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <style>
+            .doc-form {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                align-items: center;
+            }
+        
+            .document {
+                width: 50%;
+                background-color: #fff;
+                padding: 0 5%;
+                padding-block: 120px;
+                border-radius: 15px;
+        
+            }
+        
+            .doc-input input {
+                width: 100%;
+                height: 45px;
+                margin-bottom: 25px;
+                border-radius: 5px;
+                background-color: #fff;
+                border: 1px solid #9d9da9;
+        
+            }
+        
+            .doc-file input {
+                width: 100%;
+                height: 45px;
+                border: 1px solid #9d9da9;
+                margin-bottom: 25px;
+                border-radius: 5px;
+                background-color: #fff;
+            }
+        
+            .doc-submit input {
+                background-color: #9e0a89;
+                padding: 15px 70px;
+                border: none;
+                color: #fff;
+                font-family: "Rubik", sans-serif;
+                border-radius: 999px;
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+        
+            }
+        </style>
+</head>
+
+<body>
+    <div class="overflow-hidden">
+        <div class="row">
+            <div class="col-md-2">
+                {% include 'sidebar.html' %}
+            </div>
+            <div class="col-md-10 doc-form">
+                <div class="document">
+                    <form enctype="multipart/form-data" method="post">
+                        {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="doc-input">
+                            <label for="">Document Name:</label>  
+                            <br>
+                            <input type="text"  placeholder="Enter the name of the document" name="document_name" required>
+                        </div>
+                        <div class="doc-file">
+                            <label for="">Add Document:</label>
+                            <br>
+                            <input type="file" placeholder="Add your image here" name="document_image" accept="images/*" required>
+                        </div>
+                        <div class="doc-submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
